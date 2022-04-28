@@ -9,10 +9,11 @@ import "./index.css";
 // import { CounterApp } from "./components/01-useState/CounterApp";
 // import { CounterWithCustomHook } from "./components/01-useState/CounterWithCustomHook";
 // import { FocusScreen } from "./components/04-useRef/FocusScreen";
-import { RealExampleRef } from "./components/04-useRef/RealExampleRef";
+// import { RealExampleRef } from "./components/04-useRef/RealExampleRef";
+import { Layout } from "./components/05-useLayoutEffect/Layout";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RealExampleRef />);
+root.render(<Layout />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
