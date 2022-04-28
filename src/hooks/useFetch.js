@@ -25,19 +25,17 @@ export const useFetch = (url) => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setTimeout(() => {
-          if (isMounted.current) {
-            setState({
-              loading: false,
-              error: null,
-              data,
-            });
-          } else {
-            console.log(
-              "setState no se llamo... porque el Componente esta desmontado"
-            );
-          }
-        }, 4000);
+        if (isMounted.current) {
+          setState({
+            loading: false,
+            error: null,
+            data,
+          });
+        } else {
+          console.log(
+            "setState no se llamo... porque el Componente esta desmontado"
+          );
+        }
       });
   }, [url]);
 
