@@ -9,7 +9,7 @@ export const MultipleCustomHooks = () => {
     `https://www.breakingbadapi.com/api/quotes/${counter}`
   );
 
-  console.log(data);
+  // console.log(data);
   const { quote, quote_id, author, series } = !!data && data[0];
   console.log(quote, author);
 

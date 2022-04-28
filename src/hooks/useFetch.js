@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const useFetch = (url) => {
   const [state, setState] = useState({
@@ -6,6 +6,14 @@ export const useFetch = (url) => {
     loading: true,
     error: null,
   });
+
+  const isMounted = useRef(true);
+
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   useEffect(() => {
     setState({
@@ -17,11 +25,19 @@ export const useFetch = (url) => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setState({
-          loading: false,
-          error: null,
-          data,
-        });
+        setTimeout(() => {
+          if (isMounted.current) {
+            setState({
+              loading: false,
+              error: null,
+              data,
+            });
+          } else {
+            console.log(
+              "setState no se llamo... porque el Componente esta desmontado"
+            );
+          }
+        }, 4000);
       });
   }, [url]);
 
