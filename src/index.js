@@ -13,10 +13,11 @@ import "./index.css";
 // import { Layout } from "./components/05-useLayoutEffect/Layout";
 // import { Memorize } from "./components/06-useMemo/Memorize";
 // import { MemoHook } from "./components/06-useMemo/MemoHook";
-import { CallbackHook } from "./components/06-useMemo/CallbackHook";
+// import { CallbackHook } from "./components/06-useMemo/CallbackHook";
+import { Padre } from "./components/07-tarea-memo/Padre";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<CallbackHook />);
+root.render(<Padre />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
