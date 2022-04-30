@@ -1,25 +1,53 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import { todoReducer } from "./todoReducer";
 import "./styles.css";
+import { useForm } from "../../hooks/useForm";
 
-const initialState = [
-  {
-    id: new Date().getTime(),
-    desc: "Comprar cafe",
-    done: false,
-  },
-];
+// const initialState = [
+//   {
+//     id: new Date().getTime(),
+//     desc: "Comprar cafe",
+//     done: false,
+//   },
+// ];
+
+//el INIT se ejecuta al iniciar, y va a mandar los datos al INITIALSTATE del useReducer,
+const init = () => {
+  //   return [
+  //     {
+  //       id: new Date().getTime(),
+  //       desc: "Comprar cafe",
+  //       done: false,
+  //     },
+  //   ];
+
+  return JSON.parse(localStorage.getItem("todos")) || [];
+};
 
 export const TodoApp = () => {
-  const [todos, dispatch] = useReducer(todoReducer, initialState);
-  console.log(todos);
+  const [todos, dispatch] = useReducer(todoReducer, [], init);
+  //   console.log(todos);
+
+  const [{ description }, handleInputChange, reset] = useForm({
+    description: "",
+  });
+  console.log(description);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (description.trim().length <= 1) {
+      console.log("No puedes guardar vacio");
+      return;
+    }
+
     const newTodo = {
       id: new Date().getTime(),
-      desc: "Nuevo todo",
+      desc: description,
       done: false,
     };
 
@@ -29,6 +57,7 @@ export const TodoApp = () => {
     };
 
     dispatch(action);
+    reset();
   };
 
   // RETURN
@@ -39,7 +68,7 @@ export const TodoApp = () => {
         <hr />
         <div className="row">
           <div className="col-md-7">
-            <h3> Listado de tareas </h3>
+            <h3> Listado de tareas {todos.length} </h3>
             <ul className="list-group">
               {todos.map((todo, i) => (
                 <li className="list-group-item lista" key={todo.id}>
@@ -62,12 +91,17 @@ export const TodoApp = () => {
                   className="form-control"
                   type="text"
                   name="description"
+                  value={description}
+                  onChange={handleInputChange}
                 />
               </div>
 
               <div className="mb-3">
                 <div className="d-grid gap-2">
-                  <button className="btn btn-primary"> Agregar Todo </button>
+                  <button type="submit" className="btn btn-primary">
+                    {" "}
+                    Agregar Todo{" "}
+                  </button>
                 </div>
               </div>
             </form>
