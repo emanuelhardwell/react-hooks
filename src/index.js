@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
-import { TodoApp } from "./components/08-useReducer/TodoApp";
+// import { TodoApp } from "./components/08-useReducer/TodoApp";
+import { MainApp } from "./components/09-useContext/MainApp";
 // import { SimpleForm } from "./components/02-useEffect/SimpleForm";
 // import { FormWithCustomHook } from "./components/02-useEffect/FormWithCustomHook";
 // import { MultipleCustomHooks } from "./components/03-examples/MultipleCustomHooks";
@@ -18,7 +19,7 @@ import { TodoApp } from "./components/08-useReducer/TodoApp";
 // import { Padre } from "./components/07-tarea-memo/Padre";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<TodoApp />);
+root.render(<MainApp />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
